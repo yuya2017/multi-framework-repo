@@ -1,0 +1,16 @@
+{
+  "name": "multi-framework-repo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:next": "npm run dev --workspace next-app",
+    "dev:nuxt": "npm run dev --workspace nuxt-app",
+    "dev:remix": "npm run dev --workspace remix-app",
+    "dev:all": "npm run dev:next & npm run dev:nuxt & npm run dev:remix"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
