@@ -8,11 +8,14 @@ interface UserPageProps {
 
 export const getServerSideProps: GetServerSideProps<UserPageProps> = async (context) => {
   const { id } = context.params!;
+  const protocol = context.req.headers['x-forwarded-proto'] ? (context.req.headers['x-forwarded-proto'] as string) : 'http';
+  const host = context.req.headers.host;
+
   try {
-    const res = await fetch(`http://localhost:3000/api/users/${id}`);
+    const res = await fetch(`${protocol}://${host}/api/users/${id}`);
     const user: User = await res.json();
 
-    return { props: { user } };
+    return { props: { user: user, host: host } };
   } catch (error) {
     console.error(error);
     return { props: { user: null } };
