@@ -1,10 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next';
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
+import { User } from '../../types/users';
 
 interface UserPageProps {
   user: User | null;
@@ -13,7 +9,7 @@ interface UserPageProps {
 export const getServerSideProps: GetServerSideProps<UserPageProps> = async (context) => {
   const { id } = context.params!;
   try {
-    const res = await fetch(`https://api.example.com/users/${id}`);
+    const res = await fetch(`http://localhost:3000/api/users/${id}`);
     const user: User = await res.json();
 
     return { props: { user } };

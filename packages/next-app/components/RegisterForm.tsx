@@ -8,7 +8,7 @@ const RegisterForm: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/register', {
+      const res = await fetch('/api/registers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
